@@ -1,0 +1,8 @@
+# listar todas las app
+npx pm2 list
+npx pm2 start pm2.config.js
+npx pm2 stop discord-bot
+npx pm2 restart discord-bot
+npx pm2 delete discord-bot
+npx pm2 save
+npx pm2 logs discord-bot
