@@ -51,7 +51,7 @@ bot.on("guildMemberAdd", async (member) => {
     await member.roles.add(role);
 
     const messages = [
-      "Bienvenido!",
+      `Bienvenido ${member.displayName}!`,
       "Debes escribir aquí el email usado a la hora de realizar el pago.",
     ];
 
@@ -97,7 +97,7 @@ bot.on("messageCreate", async (message) => {
     const emailsWithSub = await getAllActiveSubs(envs.HOTMART_PLAN_ID);
     if (!emailsWithSub.includes(email)) {
       const m = await message.channel.send(
-        `${message.author} Pago no encontrado vinculado con **${email}**.`,
+        `${message.author} Pago no encontrado con el email.`,
       );
       await saveDeleteAfterMessages(m, 300);
       return;
@@ -152,8 +152,6 @@ async function reviewSubs() {
     }
 
     const members = await guild.members.fetch();
-    const memberIds = members.map((member: GuildMember) => member.id);
-
     const emailsWithSub = await getAllActiveSubs(envs.HOTMART_PLAN_ID);
 
     const users = await User.find({
