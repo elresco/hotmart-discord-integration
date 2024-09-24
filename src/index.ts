@@ -111,7 +111,7 @@ bot.on("messageCreate", async (message) => {
 
     if (found) {
       const m = await message.channel.send(
-        `${message.author} El email **${email}** ya fue reclamado en el pasado.`,
+        `${message.author} El email ya fue reclamado en el pasado.`,
       );
       await saveDeleteAfterMessages(m, 300);
       return;
