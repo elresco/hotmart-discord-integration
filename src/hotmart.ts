@@ -58,8 +58,9 @@ export async function getAllActiveSubs(
     urlQuery.append("page_token", pageToken);
   }
 
-  urlQuery.append("plan_id", planId);
-
+  // urlQuery.append("plan_id", planId);
+  urlQuery.append("product_id", planId);
+  
   urlQuery.append("status", "ACTIVE");
   urlQuery.append("status", "CANCELLED_BY_SELLER");
   urlQuery.append("status", "CANCELLED_BY_CUSTOMER");

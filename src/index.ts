@@ -96,6 +96,7 @@ bot.on("messageCreate", async (message) => {
 
     const email = emailValidation.data;
     const emailsWithSub = await getAllActiveSubs(envs.HOTMART_PLAN_ID);
+
     if (!emailsWithSub.includes(email)) {
       const m = await message.channel.send(
         `${message.author} Pago no encontrado con el email.`,
@@ -189,14 +190,14 @@ async function reviewSubs() {
 }
 
 bot.once("ready", async () => {
-  console.log(`Bot started as ${bot.user?.tag}`);
+  console.debug(`Bot started as ${bot.user?.tag}`);
 
   const every6hours = 21_600_000;
   setInterval(async () => {
     await reviewSubs();
   }, every6hours);
 
-  const every30min = 1_800_000;
+  const every30min = 300_000;
   setInterval(async () => {
     await processDeleteAfterMessages(bot);
   }, every30min);
