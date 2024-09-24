@@ -77,7 +77,8 @@ bot.on("messageCreate", async (message) => {
     const isAdmin = message.member?.permissions.has(
       PermissionsBitField.Flags.Administrator,
     );
-    if (isAdmin) {
+
+    if (!envs.DISCORD_ALLOW_ADMIN_WRITE_IN_LINK_CHANEL && isAdmin) {
       return;
     }
 
