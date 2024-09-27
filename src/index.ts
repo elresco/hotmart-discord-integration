@@ -1,15 +1,7 @@
-import {
-  ChannelType,
-  Client,
-  GatewayIntentBits,
-  Message,
-  Partials,
-  PermissionsBitField,
-} from "discord.js";
+import { ChannelType, Client, GatewayIntentBits, Partials } from "discord.js";
 
 import envs from "./envs";
 import { getAllActiveSubs } from "./hotmart";
-import { emailSchema } from "./schema";
 import {
   processDeleteAfterMessages,
   saveDeleteAfterMessages,
@@ -67,10 +59,10 @@ bot.on("guildMemberAdd", async (member) => {
 bot.on("messageCreate", async (message) => {
   try {
     if (message.channel.type === ChannelType.DM) {
-      return await handleDM(message)
+      return await handleDM(message, bot);
     }
 
-    return await handleOther(message)
+    return await handleOther(message);
   } catch (error) {
     console.error(`messageCreate error:`, error);
     const m = await message.channel.send(
